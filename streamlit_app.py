@@ -27,20 +27,33 @@ with st.sidebar:
     add_vertical_space(5)
     st.write('Made with ❤️ by Tate Clendening with no external help at all')
 
+# if "chatbot" not in st.session_state:
+#         __email = os.getenv("HG_ID")
+
+
+#         # load cookies from usercookies/<email>.json
+#         try:
+#             sign = Login(__email, None)
+#             cookies = sign.loadCookies()
+#             st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
+#         except:
+#             __pswd = os.getenv("HG_KEY")
+#             sign = Login(__email, __pswd)
+#             cookies = sign.login()
+#             st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
+
+
 if "chatbot" not in st.session_state:
-        __email = os.getenv("HG_ID")
+    __email = os.getenv("HG_ID")
+    #  __pswd = os.getenv("HG_KEY")
+    # sign = Login(__email, __pswd)
+    # cookies = sign.login()
+    # sign.saveCookies()
 
-
-        # load cookies from usercookies/<email>.json
-        try:
-            sign = Login(__email, None)
-            cookies = sign.login()
-            st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
-        except:
-            __pswd = os.getenv("HG_KEY")
-            sign = Login(__email, __pswd)
-            cookies = sign.login()
-            st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
+    # load cookies from usercookies/<email>.json
+    sign = Login(__email, None)
+    cookies = sign.loadCookies()
+    st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = ["I'm HugChat, How may I help you?"]
