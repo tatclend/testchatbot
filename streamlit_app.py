@@ -11,6 +11,9 @@ import logging
 
 st.set_page_config(page_title="TateChat - an LLM designed in its entirety by Tate")
 load_dotenv()
+__email = os.getenv("HG_ID")
+__pswd = os.getenv("HG_KEY")
+logging.info(__email, __pswd)
 
 with st.sidebar:
     st.title('🤗💬 TateChat App')
