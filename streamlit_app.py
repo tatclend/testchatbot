@@ -3,6 +3,7 @@ from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from streamlit_extras.add_vertical_space import add_vertical_space
 from hugchat import hugchat
+from dotenv import load_dotenv
 
 st.set_page_config(page_title="TateChat - an LLM designed in its entirety by Tate")
 
@@ -20,6 +21,13 @@ with st.sidebar:
     add_vertical_space(5)
     st.write('Made with ❤️ by Tate Clendening with no external help at all')
 
+if "chatbot" not in st.session_state:
+        __email = os.getenv("HG_ID")
+
+        # load cookies from usercookies/<email>.json
+        sign = Login(__email, None)
+        cookies = sign.loadCookies()
+        st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = ["I'm HugChat, How may I help you?"]
