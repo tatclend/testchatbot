@@ -34,7 +34,7 @@ if "chatbot" not in st.session_state:
             sign = Login(__email, None)
             cookies = sign.loadCookies()
         except:
-            sign = Login(__email, __pswd)
+            sign = Login(__email, None)
             cookies = sign.login()
             sign.saveCookies()
         
