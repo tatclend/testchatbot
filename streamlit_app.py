@@ -65,8 +65,7 @@ with input_container:
     user_input = get_text()
 
 def generate_response(prompt):
-    chatbot = hugchat.ChatBot()
-    return chatbot.chat(prompt)
+    return st.session_state.get("chatbot").chat(prompt)
 
 with response_container:
     if user_input:
