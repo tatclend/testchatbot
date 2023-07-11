@@ -27,10 +27,17 @@ with st.sidebar:
 
 if "chatbot" not in st.session_state:
         __email = os.getenv("HG_ID")
+        __pswd = os.getenv("HG_KEY")
 
         # load cookies from usercookies/<email>.json
-        sign = Login(__email, None)
-        cookies = sign.loadCookies()
+        try:
+            sign = Login(__email, None)
+            cookies = sign.loadCookies()
+        except:
+            sign = Login(__email, __pswd)
+            cookies = sign.login()
+            sign.saveCookies()
+        
         st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
 
 if 'generated' not in st.session_state:
