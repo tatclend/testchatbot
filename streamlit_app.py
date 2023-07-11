@@ -34,12 +34,13 @@ if "chatbot" not in st.session_state:
         # load cookies from usercookies/<email>.json
         try:
             sign = Login(__email, None)
+            cookies = sign.login()
+            st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
         except:
             __pswd = os.getenv("HG_KEY")
             sign = Login(__email, __pswd)
             cookies = sign.login()
-        
-        st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
+            st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
 
 if 'generated' not in st.session_state:
     st.session_state['generated'] = ["I'm HugChat, How may I help you?"]
