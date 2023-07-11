@@ -7,6 +7,7 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from hugchat import hugchat
 from hugchat.login import Login
 from dotenv import load_dotenv
+import logging
 
 st.set_page_config(page_title="TateChat - an LLM designed in its entirety by Tate")
 load_dotenv()
@@ -28,7 +29,7 @@ with st.sidebar:
 if "chatbot" not in st.session_state:
         __email = os.getenv("HG_ID")
         __pswd = os.getenv("HG_KEY")
-        print(__email, __pswd)
+        logging.info(__email, __pswd)
 
         # load cookies from usercookies/<email>.json
         try:
