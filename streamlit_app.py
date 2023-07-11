@@ -11,12 +11,7 @@ import logging
 
 st.set_page_config(page_title="TateChat - an LLM designed in its entirety by Tate")
 load_dotenv()
-__email = os.getenv("HG_ID")
-__pswd = os.getenv("HG_KEY")
-logging.info(__email, __pswd)
 
-sign = Login(__email, None)
-cookies = sign.loadCookies()
 
 with st.sidebar:
     st.title('🤗💬 TateChat App')
@@ -36,15 +31,21 @@ if "chatbot" not in st.session_state:
         __email = os.getenv("HG_ID")
         __pswd = os.getenv("HG_KEY")
         logging.info(__email, __pswd)
-
-        # load cookies from usercookies/<email>.json
-        try:
-            sign = Login(__email, None)
-            cookies = sign.loadCookies()
-        except:
-            sign = Login(__email, __pswd)
-            cookies = sign.login()
-            sign.saveCookies()
+        
+        sign = Login(__email, __pswd)
+        cookies = sign.login()
+        sign.saveCookies()
+        #load cookies from usercookies/<email>.json
+        # sign = Login(__email, None)
+        # cookies = sign.loadCookies()
+        # # load cookies from usercookies/<email>.json
+        # try:
+        #     sign = Login(__email, None)
+        #     cookies = sign.loadCookies()
+        # except:
+        #     sign = Login(__email, __pswd)
+        #     cookies = sign.login()
+        #     sign.saveCookies()
         
         st.session_state["chatbot"] = hugchat.ChatBot(cookies=cookies.get_dict())
 
