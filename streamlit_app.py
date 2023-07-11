@@ -1,12 +1,15 @@
 import streamlit as st
 import os
+from dotenv import load_dotenv
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from streamlit_extras.add_vertical_space import add_vertical_space
 from hugchat import hugchat
+from hugchat.login import Login
 from dotenv import load_dotenv
 
 st.set_page_config(page_title="TateChat - an LLM designed in its entirety by Tate")
+load_dotenv()
 
 with st.sidebar:
     st.title('🤗💬 TateChat App')
