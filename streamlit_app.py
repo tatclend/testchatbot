@@ -28,13 +28,14 @@ with st.sidebar:
 if "chatbot" not in st.session_state:
         __email = os.getenv("HG_ID")
         __pswd = os.getenv("HG_KEY")
+        print(__email, __pswd)
 
         # load cookies from usercookies/<email>.json
         try:
             sign = Login(__email, None)
             cookies = sign.loadCookies()
         except:
-            sign = Login(__email, None)
+            sign = Login(__email, __pswd)
             cookies = sign.login()
             sign.saveCookies()
         
