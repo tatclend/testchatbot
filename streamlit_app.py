@@ -15,6 +15,9 @@ __email = os.getenv("HG_ID")
 __pswd = os.getenv("HG_KEY")
 logging.info(__email, __pswd)
 
+sign = Login(__email, None)
+cookies = sign.loadCookies()
+
 with st.sidebar:
     st.title('🤗💬 TateChat App')
     st.markdown('''
