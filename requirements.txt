@@ -3,3 +3,4 @@ hugchat
 streamlit-chat
 streamlit-extras
 python-dotenv
+nltk
